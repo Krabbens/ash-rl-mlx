@@ -197,13 +197,21 @@ def main():
             
             if solved:
                 total_solved += 1
-                entry = {
-                    "messages": [
-                        {"role": "system", "content": sys_prompt},
-                        {"role": "user", "content": prompt},
-                        {"role": "assistant", "content": best_response}
-                    ]
-                }
+                
+                # Format for MLX LoRA (pre-apply template to avoid tokenizer issues during training)
+                # We want the model to learn to output the assistant response given the user input.
+                # mlx_lm.lora supports {"text": "..."} where it trains on the whole sequence.
+                # Ideally we mask the user part, but for simple "text" format it trains on everything.
+                # This is "fine" for this demo.
+                
+                full_messages = [
+                    {"role": "system", "content": sys_prompt},
+                    {"role": "user", "content": prompt},
+                    {"role": "assistant", "content": best_response}
+                ]
+                full_text = tokenizer.apply_chat_template(full_messages, tokenize=False)
+                
+                entry = {"text": full_text}
                 candidates_dataset.append(entry)
                 # print(f"  [SOLVED] {prompt} -> {cmd}")
             # else:
