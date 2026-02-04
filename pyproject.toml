@@ -1,0 +1,13 @@
+[project]
+name = "ash-rl-mlx"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "datasets>=4.5.0",
+    "mlx>=0.30.5",
+    "mlx-lm>=0.29.1",
+    "numpy>=2.4.2",
+    "tqdm>=4.67.3",
+]
