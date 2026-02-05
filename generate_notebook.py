@@ -114,7 +114,7 @@ notebook = {
     "    # 1. Code blocks\n",
     "    code_blocks = re.findall(r'```(?:bash|sh)?\\n(.*?)```', response, re.DOTALL)\n",
     "    if code_blocks:\n",
-    "        return code_blocks[0].strip()\n",
+    "        return \"\\n\".join([b.strip() for b in code_blocks])\n",
     "    \n",
     "    # 2. Extract after thinking tags\n",
     "    if \"</thinking>\" in response:\n",
