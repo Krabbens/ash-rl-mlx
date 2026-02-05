@@ -130,7 +130,18 @@ notebook = {
     "        cl = line.strip()\n",
     "        if cl and not cl.startswith(('#', 'Here', 'To', 'Step', 'Note')):\n",
     "            return cl\n",
-    "    return response.strip()\n"
+    "    return response.strip()\n",
+    "\n",
+    "def clean_command(cmd):\n",
+    "    if not cmd: return cmd\n",
+    "    lines = cmd.split('\\n')\n",
+    "    cleaned = []\n",
+    "    for line in lines:\n",
+    "        if '#' in line:\n",
+    "            line = line.split('#')[0]\n",
+    "        if line.strip():\n",
+    "            cleaned.append(line.strip())\n",
+    "    return '\\n'.join(cleaned)\n"
    ]
   },
   {
