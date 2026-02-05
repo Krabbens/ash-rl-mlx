@@ -1,4 +1,6 @@
-{
+import json
+
+notebook = {
  "cells": [
   {
    "cell_type": "markdown",
@@ -13,8 +15,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
-   "id": "02e527d8",
+   "execution_count": None,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -32,7 +33,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": None,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -61,7 +62,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": None,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -134,7 +135,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": None,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -166,7 +167,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": None,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -315,3 +316,6 @@
  "nbformat": 4,
  "nbformat_minor": 5
 }
+
+with open("ash_rl_colab.ipynb", "w") as f:
+    json.dump(notebook, f, indent=1)

@@ -8,7 +8,7 @@ sandbox/
 *.jsonl
 *.log
 terminal-bench/
-terminal_bench_full.json
+
 .streamlit/
 sandbox_rl/
 bash_expert_data.jsonl
