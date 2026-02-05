@@ -214,7 +214,7 @@ notebook = {
     "        sys_prompt = (\n",
     "            \"You are an expert Linux terminal assistant. \"\n",
     "            \"The current working directory is /app. \"\n",
-    "            \"Reason about the task inside <thinking> tags, then provide the script inside ```bash code blocks.\"\n",
+    "            \"First, analyze the task in <thinking> tags. Then, provide ONLY the bash command to solve the task inside a ```bash code block. Do not output any explanations outside the code block.\"\n",
     "        )\n",
     "        messages = [{\"role\": \"system\", \"content\": sys_prompt}, {\"role\": \"user\", \"content\": prompt}]\n",
     "        text_prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)\n",
