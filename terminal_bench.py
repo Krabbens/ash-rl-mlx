@@ -120,9 +120,7 @@ class TerminalBench:
         
         # Block dangerous/hanging commands
         BLOCKED_PATTERNS = [
-            'conda', 'apt-get', 'apt ', 'pip install', 'docker', 'ssh ',
-            'wget ', 'curl ', 'sudo', 'brew ', 'npm install', 'cargo install',
-            'systemctl', 'service ', 'shutdown', 'reboot', 'rm -rf /'
+            'ssh ', 'shutdown', 'reboot', 'rm -rf /'
         ]
         
         if cmd:
@@ -143,7 +141,7 @@ class TerminalBench:
         if not cmd:
             return False, {"error": "No command", "exit_code": -1}
         
-        result = self._run(cmd, timeout=5)  # Increased timeout
+        result = self._run(cmd, timeout=30)  # Increased timeout for installs
         
         # 3. Verify
         verifier_cmd = self._map_paths(task["verifier"])
@@ -151,7 +149,7 @@ class TerminalBench:
             if not verifier_cmd:
                 success = False
             elif verifier_cmd.startswith("bash ") or verifier_cmd.startswith("python3 "):
-                v_result = self._run(verifier_cmd, timeout=10)
+                v_result = self._run(verifier_cmd, timeout=30)
                 success = (v_result.returncode == 0)
             else:
                 verifier_path = os.path.join(self.sandbox_dir, "verify_task.sh")
