@@ -7,12 +7,12 @@ import re
 class TerminalBench:
     def __init__(self, task_file=None):
         self.sandbox_dir = os.path.abspath("sandbox_rl")
+        self.tasks = self._define_local_tasks()
         if task_file and os.path.exists(task_file):
             print(f"Loading tasks from {task_file}... (Path mapping /app -> ./ enabled)")
             with open(task_file, "r") as f:
                 raw_tasks = json.load(f)
                 # Map full dataset keys to internal ones
-                self.tasks = []
                 for t in raw_tasks:
                     self.tasks.append({
                         "id": t.get("task_id", "unknown"),
@@ -22,8 +22,7 @@ class TerminalBench:
                         "verifier": t.get("verifier", ""),
                         "task_dir": t.get("task_dir", "")
                     })
-        else:
-            self.tasks = self._define_local_tasks()
+        print(f"Total tasks loaded: {len(self.tasks)}")
         self.reset_sandbox()
 
     def reset_sandbox(self):
